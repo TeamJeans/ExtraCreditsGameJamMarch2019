@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
 	// Time limit variables
 	[SerializeField]
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour {
 	GameObject levelCompleteUI;
 	[SerializeField]
 	GameObject gameOverUI;
+	[SerializeField]
+	GameObject mainMenuUI;
 
 	// Player related variables
 	[SerializeField]
@@ -30,22 +33,30 @@ public class GameManager : MonoBehaviour {
 	Transform playerSpawnPoint;
 	bool playerWon = false;
 
+	bool gameStarted = false;
+
 	void Start()
 	{
 		// Disable the ui when the game starts
 		levelCompleteUI.SetActive(false);
 		gameOverUI.SetActive(false);
+		mainMenuUI.SetActive(true);
 
-		// Start the timer
-		if (!startTime)
-		{
-			startTime = true;
-			elapsedTimeSinceLevelStarted = 0.0f;
-		}
+		// Initialise the timer text
+		timeLimitText.text = timeLimit + "";
 	}
 
 	void Update()
 	{
+		//Check if the player has pressed A and start the game if so
+		if (!gameStarted)
+		{
+			if (Input.GetKeyDown("a"))
+			{
+				startGame();
+			}
+		}
+
 		// Start the timer
 		if (startTime)
 		{
@@ -127,5 +138,20 @@ public class GameManager : MonoBehaviour {
 
 		// RepositionPlayer
 		playerObject.transform.position = new Vector3(playerSpawnPoint.position.x, playerSpawnPoint.position.y, playerSpawnPoint.position.z);
+	}
+
+	public void startGame()
+	{
+		gameStarted = true;
+
+		// Disable the mainmenu ui
+		mainMenuUI.SetActive(false);
+
+		// Start the timer
+		if (!startTime)
+		{
+			startTime = true;
+			elapsedTimeSinceLevelStarted = 0.0f;
+		}
 	}
 }

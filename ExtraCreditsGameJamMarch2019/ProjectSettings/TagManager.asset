@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pit
   - GameManager
+  - Car
   layers:
   - Default
   - TransparentFX
