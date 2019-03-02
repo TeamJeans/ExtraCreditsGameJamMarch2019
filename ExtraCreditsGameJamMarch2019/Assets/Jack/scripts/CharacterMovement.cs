@@ -30,16 +30,21 @@ public class CharacterMovement : MonoBehaviour {
             //GetComponent<Rigidbody>().velocity = speed * InputManager.LeftTrigger();
             //GetComponent<Rigidbody>().AddRelativeForce(InputManager.LeftTrigger() * 5 * InputManager.MainVertical(), 0, 0);
 
-            GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * InputManager.LeftTrigger() + 5, 0, 0);
-            transform.Rotate(0, InputManager.LeftTrigger()/2, 0);
+            GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * InputManager.LeftTrigger() + 3, 0, 0);
+            transform.Rotate(0, InputManager.LeftTrigger()*2, 0);
         }
         if (InputManager.RightTrigger() > 0)
         {
             //GetComponent<Rigidbody>().velocity = speed * InputManager.RightTrigger();
             //GetComponent<Rigidbody>().AddRelativeForce(InputManager.RightTrigger() * 5 * InputManager.SecondVertical(), 0, 0);
 
-            GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * InputManager.RightTrigger() + 5, 0, 0);
-            transform.Rotate(0, -InputManager.RightTrigger()/2, 0);            
+            GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * InputManager.RightTrigger() + 3, 0, 0);
+            transform.Rotate(0, -InputManager.RightTrigger()*2, 0);            
+        }
+
+        if (InputManager.AButton())
+        {
+            GetComponent<Rigidbody>().AddRelativeForce(0,1000,0);
         }
 
         //max speed
