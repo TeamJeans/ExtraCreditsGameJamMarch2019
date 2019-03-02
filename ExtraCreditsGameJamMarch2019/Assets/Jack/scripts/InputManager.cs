@@ -4,74 +4,118 @@ using UnityEngine;
 
 public static class InputManager
 {
-    //left stick
-    public static float MainHorizontal()
+    //controller1
+    public static float MainHorizontal1()
     {
         float r = 0.0f;
-        r += Input.GetAxis("J_MainHorizontal");
-        r += Input.GetAxis("K_MainHorizontal");
+        r += Input.GetAxis("J1Horizontal");
         return Mathf.Clamp(r, -1.0f, 1.0f);
     }
-    public static float MainVertical()
+    public static float MainVertical1()
     {
         float r = 0.0f;
-        r += Input.GetAxis("J_MainVertical");
-        r += Input.GetAxis("K_MainVertical");
+        r += Input.GetAxis("J1Vertical");
         return Mathf.Clamp(r, -1.0f, 1.0f);
     }
-    public static Vector3 MainJoystick()
-    {
-        return new Vector3(MainHorizontal(),0,MainVertical());
-    }
-
-    //right stick
-    public static float SecondHorizontal()
-    {
-        float r = 0.0f;
-        r += Input.GetAxis("J_SecondHorizontal");
-        return Mathf.Clamp(r, -1.0f, 1.0f);
-    }
-    public static float SecondVertical()
-    {
-        float r = 0.0f;
-        r += Input.GetAxis("J_SecondVertical");
-        //r += Input.GetAxis("K_MainVertical");
-        return Mathf.Clamp(r, -1.0f, 1.0f);
-    }
-    public static Vector3 SecondJoystick()
-    {
-        return new Vector3(SecondHorizontal(), 0, SecondVertical());
-    }
-
     //triggers
-    public static float LeftTrigger()
+    public static float LeftTrigger1()
     {
         float r = 0.0f;
-        r += Input.GetAxis("J_LeftTrigger");
+        r += Input.GetAxis("J1LTrigger");
         return Mathf.Clamp(r, -1.0f, 1.0f);
     }
-    public static float RightTrigger()
+    public static float RightTrigger1()
     {
         float r = 0.0f;
-        r += Input.GetAxis("J_RightTrigger");
+        r += Input.GetAxis("J1RTrigger");
         return Mathf.Clamp(r, -1.0f, 1.0f);
+    }
+    //bumpers
+    public static bool LeftBumper1()
+    {
+        return Input.GetButtonDown("J1LBumper");
+    }
+    public static bool RightBumper1()
+    {
+        return Input.GetButtonDown("J1RBumper");
     }
 
     //buttons
-    public static bool AButton()
+    public static bool AButton1()
     {
-        return Input.GetButtonDown("A_Button");
+        return Input.GetButtonDown("J1A");
     }
-    public static bool BButton()
+    public static bool BButton1()
     {
-        return Input.GetButtonDown("B_Button");
+        return Input.GetButtonDown("J1B");
     }
-    public static bool XButton()
+    public static bool XButton1()
     {
-        return Input.GetButtonDown("X_Button");
+        return Input.GetButtonDown("J1X");
     }
-    public static bool YButton()
+    public static bool YButton1()
     {
-        return Input.GetButtonDown("Y_Button");
+        return Input.GetButtonDown("J1Y");
     }
+
+
+
+
+
+
+
+    //controller2
+    public static float MainHorizontal2()
+    {
+        float r = 0.0f;
+        r += Input.GetAxis("J2Horizontal");
+        return Mathf.Clamp(r, -1.0f, 1.0f);
+    }
+    public static float MainVertical2()
+    {
+        float r = 0.0f;
+        r += Input.GetAxis("J2Vertical");
+        return Mathf.Clamp(r, -1.0f, 1.0f);
+    }
+    //triggers
+    public static float LeftTrigger2()
+    {
+        float r = 0.0f;
+        r += Input.GetAxis("J2LTrigger");
+        return Mathf.Clamp(r, -1.0f, 1.0f);
+    }
+    public static float RightTrigger2()
+    {
+        float r = 0.0f;
+        r += Input.GetAxis("J2RTrigger");
+        return Mathf.Clamp(r, -1.0f, 1.0f);
+    }
+    //bumpers
+    public static bool LeftBumper2()
+    {
+        return Input.GetButtonDown("J2LBumper");
+    }
+    public static bool RightBumper2()
+    {
+        return Input.GetButtonDown("J2RBumper");
+    }
+    //buttons
+    public static bool AButton2()
+    {
+        return Input.GetButtonDown("J2A");
+    }
+    public static bool BButton2()
+    {
+        return Input.GetButtonDown("J2B");
+    }
+    public static bool XButton2()
+    {
+        return Input.GetButtonDown("J2X");
+    }
+    public static bool YButton2()
+    {
+        return Input.GetButtonDown("J2Y");
+    }
+
+
 }

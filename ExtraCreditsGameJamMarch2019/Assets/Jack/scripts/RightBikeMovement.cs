@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class RightBikeMovement : MonoBehaviour {
 
+
     Vector3 speedReduct;
     int MvSpeed;
     float speed;
+    float pedalSpeed;
+    float BpedalSpeed;
+
+    bool LPedal;
+    bool RPedal;
+
+    bool LPedalB;
+    bool RPedalB;
 
     // Use this for initialization
     void Start()
@@ -17,34 +26,103 @@ public class RightBikeMovement : MonoBehaviour {
 
         speed = 5.0f;
         MvSpeed = 25;
+
+        BpedalSpeed = 0;
+        pedalSpeed = 0;
+        LPedal = false;
+        RPedal = false;
+        LPedalB = false;
+        RPedalB = false;
     }
 
-    // Update is called once per frame
-    void Update ()
-    {
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         Quaternion q = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
 
-        if (InputManager.RightTrigger() > 0)
+        
+        //left trigger
+        if (InputManager.LeftTrigger2() > 0) LPedal = true;
+        if (InputManager.LeftTrigger2() == 0 && LPedal)
         {
-            //GetComponent<Rigidbody>().velocity = speed * InputManager.RightTrigger();
-            //GetComponent<Rigidbody>().AddRelativeForce(InputManager.RightTrigger() * 5 * InputManager.SecondVertical(), 0, 0);
-
-            GetComponent<Rigidbody>().AddRelativeForce(InputManager.SecondVertical() * MvSpeed * InputManager.RightTrigger() + 5, 0, 0);
-            //transform.Rotate(0, -InputManager.RightTrigger()/2, 0);
+            pedalSpeed += 0.3f;
+            BpedalSpeed = 0;
+            LPedal = false;
+        }
+        //right trigger
+        if (InputManager.RightTrigger2() > 0) RPedal = true;
+        if (InputManager.RightTrigger2() == 0 && LPedal)
+        {
+            pedalSpeed += 0.3f;
+            BpedalSpeed = 0;
+            RPedal = false;
         }
 
-        //small extra force from other one
-        if (InputManager.LeftTrigger() > 0)
+        //left bumper for reversing
+        if (!InputManager.LeftBumper2()) LPedalB = true;
+        if (InputManager.LeftBumper2() && LPedalB)
         {
-            GetComponent<Rigidbody>().AddRelativeForce(InputManager.LeftTrigger() + 5, 0, 0);
+            BpedalSpeed -= 0.3f;
+            pedalSpeed = 0;
+            LPedalB = false;
+        }
+        //right bumper for reversing
+        if (!InputManager.RightBumper2()) RPedalB = true;
+        if (InputManager.RightBumper2() && LPedalB)
+        {
+            BpedalSpeed -= 0.3f;
+            pedalSpeed = 0;
+            RPedalB = false;
         }
 
-            //max speed
-            if (GetComponent<Rigidbody>().velocity.magnitude > 100)
+
+        //stop it going the wrong direction by itself
+        if (BpedalSpeed > 0)
+        {
+            BpedalSpeed = 0;
+        }
+        if (pedalSpeed < 0)
+        {
+            pedalSpeed = 0;
+        }
+
+        if (BpedalSpeed < -2)
+        {
+            BpedalSpeed = -2;
+        }
+        if (pedalSpeed > 2)
+        {
+            pedalSpeed = 2;
+        }
+
+        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * pedalSpeed, 0, 0);
+        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * BpedalSpeed, 0, 0);
+
+
+
+
+        //if (InputManager.RightTrigger() > 0)
+        //{
+        //    pedalSpeed++;
+        //    //transform.Rotate(0, InputManager.LeftTrigger()/2, 0);
+        //}
+
+
+        //GetComponent<Rigidbody>().AddRelativeForce(InputManager.MainVertical() * MvSpeed * InputManager.LeftTrigger(), 0, 0);
+
+        ////small extra force from other one
+        //if (InputManager.RightTrigger() > 0)
+        //{
+        //    GetComponent<Rigidbody>().AddRelativeForce(InputManager.RightTrigger() + 5, 0, 0);
+        //}
+
+        //max speed
+        if (GetComponent<Rigidbody>().velocity.magnitude > 100)
         {
             GetComponent<Rigidbody>().AddRelativeForce(-GetComponent<Rigidbody>().velocity);
         }
+        pedalSpeed -= Time.deltaTime;
     }
 }
