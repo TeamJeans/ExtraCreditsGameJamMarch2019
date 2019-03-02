@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,20 @@ public class GameManager : MonoBehaviour
 	GameObject gameOverUI;
 	[SerializeField]
 	GameObject mainMenuUI;
+	[SerializeField]
+	TextMeshProUGUI levelNameText;
+
+	// Level names
+	[SerializeField]
+	string level1Name;
+	[SerializeField]
+	string level2Name;
+	[SerializeField]
+	string level3Name;
+
+	// Animation
+	[SerializeField]
+	Animator levelNumberTextFadeAnim;
 
 	// Player related variables
 	[SerializeField]
@@ -44,6 +59,25 @@ public class GameManager : MonoBehaviour
 
 		// Initialise the timer text
 		timeLimitText.text = timeLimit + "";
+
+		// Change the level name depending on the current level
+		switch (StaticValueHolder.CurrentLevel)
+		{
+			case 1:
+				ChangeLevelName(level1Name);
+				break;
+			case 2:
+				ChangeLevelName(level2Name);
+				break;
+			case 3:
+				ChangeLevelName(level3Name);
+				break;
+			default:
+				break;
+		}
+
+		// RepositionPlayer
+		playerObject.transform.position = new Vector3(playerSpawnPoint.position.x, playerSpawnPoint.position.y, playerSpawnPoint.position.z);
 	}
 
 	void Update()
@@ -85,10 +119,32 @@ public class GameManager : MonoBehaviour
 			playerWon = true;
 		}
 
-		// If the player has won then show the end of level UI
+		// If the player has won then show the end of level UI and let them goto the next level
 		if (playerWon)
 		{
 			DisplayLevelCompleteUI();
+			if (Input.GetKeyDown("a"))
+			{
+				// Go the the next level
+				switch (StaticValueHolder.CurrentLevel)
+				{
+					case 1:
+						StaticValueHolder.CurrentLevel++;
+						GoToScene("Level2");
+						break;
+					case 2:
+						StaticValueHolder.CurrentLevel++;
+						GoToScene("Level3");
+						break;
+					case 3:
+						StaticValueHolder.CurrentLevel++;
+						GoToScene("WinScene");
+						break;
+					default:
+						break;
+				}
+
+			}
 		}
 
 		// Check if the player has pressed the restart button
@@ -153,5 +209,18 @@ public class GameManager : MonoBehaviour
 			startTime = true;
 			elapsedTimeSinceLevelStarted = 0.0f;
 		}
+
+		// Show the level number
+		levelNumberTextFadeAnim.SetBool("PlayFadeAnim", true);
+	}
+
+	public void ChangeLevelName(string levelName)
+	{
+		levelNameText.text = "LEVEL " + StaticValueHolder.CurrentLevel + ":" + levelName;
+	}
+
+	public void GoToScene(string sceneName)
+	{
+		SceneManager.LoadScene(sceneName);
 	}
 }
