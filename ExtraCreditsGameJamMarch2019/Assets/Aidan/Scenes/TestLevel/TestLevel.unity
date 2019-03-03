@@ -153,6 +153,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 82211440271085624, guid: d17b2bb9f1640d74bb2d2c9236ffbd86,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 84aecdaf5de7c9e4e9e4a03d405aa7e0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d17b2bb9f1640d74bb2d2c9236ffbd86, type: 2}
   m_IsPrefabAsset: 0
@@ -302,6 +307,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82626492465432320, guid: 1d6ce688551e9a84b86380af6388d54e,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 84aecdaf5de7c9e4e9e4a03d405aa7e0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d6ce688551e9a84b86380af6388d54e, type: 2}
   m_IsPrefabAsset: 0
@@ -3270,11 +3280,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4280378002785674, guid: 7a4ace234f26b7a47a9452c67864ce9f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 9.59
       objectReference: {fileID: 0}
     - target: {fileID: 4280378002785674, guid: 7a4ace234f26b7a47a9452c67864ce9f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10.14
+      value: 2.96
       objectReference: {fileID: 0}
     - target: {fileID: 4280378002785674, guid: 7a4ace234f26b7a47a9452c67864ce9f, type: 2}
       propertyPath: m_LocalPosition.z
