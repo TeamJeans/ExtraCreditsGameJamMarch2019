@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class RightBikeMovement : MonoBehaviour {
+
+    public Animator cycleAnim;
 
 
     Vector3 speedReduct;
@@ -53,7 +56,7 @@ public class RightBikeMovement : MonoBehaviour {
         }
         //right trigger
         if (InputManager.RightTrigger2() > 0) RPedal = true;
-        if (InputManager.RightTrigger2() == 0 && LPedal)
+        if (InputManager.RightTrigger2() == 0 && RPedal)
         {
             pedalSpeed += 0.3f;
             BpedalSpeed = 0;
@@ -97,8 +100,12 @@ public class RightBikeMovement : MonoBehaviour {
             pedalSpeed = 2;
         }
 
-        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * pedalSpeed, 0, 0);
-        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * BpedalSpeed, 0, 0);
+        //animation
+        cycleAnim.SetFloat("CycleSpeed", 8 * pedalSpeed);
+
+        //add force to move
+        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -pedalSpeed, 0, 0);
+        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -BpedalSpeed, 0, 0);
 
 
 

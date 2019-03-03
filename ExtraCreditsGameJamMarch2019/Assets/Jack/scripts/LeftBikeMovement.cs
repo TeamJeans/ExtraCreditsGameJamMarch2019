@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LeftBikeMovement : MonoBehaviour {
 
+    public Animator cycleAnim;
+
     Vector3 speedReduct;
     int MvSpeed;
     float speed;
@@ -102,10 +104,13 @@ public class LeftBikeMovement : MonoBehaviour {
         {
             BpedalSpeed = -2;
         }
-        
 
-        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * pedalSpeed, 0, 0);
-        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * BpedalSpeed, 0, 0);
+        //animation
+        cycleAnim.SetFloat("CycleSpeed", 8 * pedalSpeed);
+
+        //add force to make object move
+        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -pedalSpeed, 0, 0);
+        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -BpedalSpeed, 0, 0);
 
 
         //max speed
