@@ -91,39 +91,29 @@ public class RightBikeMovement : MonoBehaviour {
             pedalSpeed = 0;
         }
 
-        if (BpedalSpeed < -2)
+        if (BpedalSpeed < -4)
         {
-            BpedalSpeed = -2;
+            BpedalSpeed = -4;
         }
-        if (pedalSpeed > 2)
+        if (pedalSpeed > 4)
         {
-            pedalSpeed = 2;
+            pedalSpeed = 4;
         }
 
         //animation
-        cycleAnim.SetFloat("CycleSpeed", 8 * pedalSpeed);
+        if (pedalSpeed > 0)
+        {
+            cycleAnim.SetFloat("CycleSpeed", 8 * pedalSpeed);
+        }
+        else
+        {
+            cycleAnim.SetFloat("CycleSpeed", 8 * BpedalSpeed);
+        }
 
         //add force to move
         GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -pedalSpeed, 0, 0);
         GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -BpedalSpeed, 0, 0);
 
-
-
-
-        //if (InputManager.RightTrigger() > 0)
-        //{
-        //    pedalSpeed++;
-        //    //transform.Rotate(0, InputManager.LeftTrigger()/2, 0);
-        //}
-
-
-        //GetComponent<Rigidbody>().AddRelativeForce(InputManager.MainVertical() * MvSpeed * InputManager.LeftTrigger(), 0, 0);
-
-        ////small extra force from other one
-        //if (InputManager.RightTrigger() > 0)
-        //{
-        //    GetComponent<Rigidbody>().AddRelativeForce(InputManager.RightTrigger() + 5, 0, 0);
-        //}
 
         //max speed
         if (GetComponent<Rigidbody>().velocity.magnitude > 100)
