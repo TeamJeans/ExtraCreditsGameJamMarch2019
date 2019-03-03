@@ -55,7 +55,18 @@ public class GameManager : MonoBehaviour
 		// Disable the ui when the game starts
 		levelCompleteUI.SetActive(false);
 		gameOverUI.SetActive(false);
-		mainMenuUI.SetActive(true);
+
+		// Check if the first level is loaded and only show the game title if so
+		if (StaticValueHolder.CurrentLevel == 1)
+		{
+			mainMenuUI.SetActive(true);
+		}
+		else
+		{
+			// Start the next level without needing input to skip the game title
+			gameStarted = true;
+			startGame();
+		}
 
 		// Initialise the timer text
 		timeLimitText.text = timeLimit + "";
