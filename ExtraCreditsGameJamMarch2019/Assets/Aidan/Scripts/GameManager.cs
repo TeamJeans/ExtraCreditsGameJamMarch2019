@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 		gameOverUI.SetActive(false);
 
 		// Check if the first level is loaded and only show the game title if so
-		if (StaticValueHolder.CurrentLevel == 1)
+		if (StaticValueHolder.CurrentLevel == 0)
 		{
 			mainMenuUI.SetActive(true);
 		}
@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
 		//Debug.Log("Space");
 
 		//Check if the player has pressed A and start the game if so
-		if (!startTheStartTimer)
+		if (!startTheStartTimer && !gameStarted)
 		{
 			if (Input.GetButtonDown("J1A") || Input.GetButtonDown("J2A"))
 			{
@@ -197,11 +197,15 @@ public class GameManager : MonoBehaviour
 		if (playerWon)
 		{
 			DisplayLevelCompleteUI();
-			if (Input.GetKeyDown("a"))
+			if (Input.GetButtonDown("J1A") || Input.GetButtonDown("J2A"))
 			{
 				// Go the the next level
 				switch (StaticValueHolder.CurrentLevel)
 				{
+					case 0:
+						StaticValueHolder.CurrentLevel++;
+						GoToScene("Level1");
+						break;
 					case 1:
 						StaticValueHolder.CurrentLevel++;
 						GoToScene("Level2");
@@ -212,7 +216,11 @@ public class GameManager : MonoBehaviour
 						break;
 					case 3:
 						StaticValueHolder.CurrentLevel++;
-						GoToScene("WinScene");
+						GoToScene("Level4");
+						break;
+					case 4:
+						StaticValueHolder.CurrentLevel++;
+						GoToScene("Tutorial");
 						break;
 					default:
 						break;

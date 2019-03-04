@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class StaticValueHolder {
 
-	static int currentLevel = 1;
+	static int currentLevel = 0;
 	public static int CurrentLevel { get { return currentLevel; } set { currentLevel = value; } }
 	
 }
