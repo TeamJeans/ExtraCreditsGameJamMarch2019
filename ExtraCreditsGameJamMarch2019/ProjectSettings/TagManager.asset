@@ -7,6 +7,7 @@ TagManager:
   - Pit
   - GameManager
   - Car
+  - AudioManager
   layers:
   - Default
   - TransparentFX

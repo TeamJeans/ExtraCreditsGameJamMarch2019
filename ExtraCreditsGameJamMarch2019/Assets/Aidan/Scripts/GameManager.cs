@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+	AudioManager am;
+
 	// Time limit variables
 	[SerializeField]
 	float timeLimit = 100.0f;
@@ -49,6 +51,13 @@ public class GameManager : MonoBehaviour
 	bool playerWon = false;
 
 	bool gameStarted = false;
+	bool finalCountdownEnabled = false;
+	int timeLeftInSeconds;
+
+	void Awake()
+	{
+		am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+	}
 
 	void Start()
 	{
@@ -89,6 +98,8 @@ public class GameManager : MonoBehaviour
 
 		// RepositionPlayer
 		playerObject.transform.position = new Vector3(playerSpawnPoint.position.x, playerSpawnPoint.position.y, playerSpawnPoint.position.z);
+
+		finalCountdownEnabled = false;
 	}
 
 	void Update()
@@ -105,10 +116,14 @@ public class GameManager : MonoBehaviour
 		// Start the timer
 		if (startTime)
 		{
+
 			// Increment the time and check if it is equal to the time limit
 			elapsedTimeSinceLevelStarted += Time.deltaTime;
+			timeLeftInSeconds = (int)(timeLimit - elapsedTimeSinceLevelStarted);
 			if (elapsedTimeSinceLevelStarted >= timeLimit)
 			{
+				// Stop the countdown
+				finalCountdownEnabled = false;
 				Debug.Log("Time's Up!");
 				startTime = false;
 
@@ -120,7 +135,7 @@ public class GameManager : MonoBehaviour
 			}
 
 			// Update the time limit text to display the right time
-			int timeLeftInSeconds = (int)(timeLimit - elapsedTimeSinceLevelStarted);
+			timeLeftInSeconds = (int)(timeLimit - elapsedTimeSinceLevelStarted);
 			timeLimitText.text = timeLeftInSeconds + "";
 		}
 
@@ -164,6 +179,16 @@ public class GameManager : MonoBehaviour
 			// Restart level
 			RestartLevel();
 		}
+
+		Debug.Log("Final Countdown:" + finalCountdownEnabled);
+
+		// If the countdown has reached start playing the clock sound
+		if (!finalCountdownEnabled && timeLeftInSeconds <= 10)
+		{
+			Debug.Log("Works");
+			finalCountdownEnabled = true;
+			am.PlaySound("ClockTick");
+		}
 	}
 
 	public void KillPlayer()
@@ -188,6 +213,7 @@ public class GameManager : MonoBehaviour
 		// Reset finish Line
 		finishLine.PlayerCrossed = false;
 		playerWon = false;
+		finalCountdownEnabled = false;
 
 		// Reset UI
 		levelCompleteUI.SetActive(false);
@@ -210,6 +236,7 @@ public class GameManager : MonoBehaviour
 	public void startGame()
 	{
 		gameStarted = true;
+		finalCountdownEnabled = false;
 
 		// Disable the mainmenu ui
 		mainMenuUI.SetActive(false);
