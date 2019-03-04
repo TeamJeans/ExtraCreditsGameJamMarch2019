@@ -52,7 +52,9 @@ public class GameManager : MonoBehaviour
 
 	bool gameStarted = false;
 	bool finalCountdownEnabled = false;
+	bool playVictorySound = false;
 	int timeLeftInSeconds;
+	float counterForASecond = 0;
 
 	void Awake()
 	{
@@ -61,6 +63,9 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
+		// Setup the amount of time left
+		timeLeftInSeconds = (int)timeLimit;
+
 		// Disable the ui when the game starts
 		levelCompleteUI.SetActive(false);
 		gameOverUI.SetActive(false);
@@ -98,12 +103,18 @@ public class GameManager : MonoBehaviour
 
 		// RepositionPlayer
 		playerObject.transform.position = new Vector3(playerSpawnPoint.position.x, playerSpawnPoint.position.y, playerSpawnPoint.position.z);
-
-		finalCountdownEnabled = false;
 	}
 
 	void Update()
 	{
+		// TEST STUFF
+		//AudioListener[] aL = FindObjectsOfType<AudioListener>();
+		//for (int i = 0; i < aL.Length; i++)
+		//{
+		//	Debug.Log(aL[i]);
+		//}
+		//Debug.Log("Space");
+
 		//Check if the player has pressed A and start the game if so
 		if (!gameStarted)
 		{
@@ -113,10 +124,12 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		// Calculate the amount of time that the player has left
+		timeLeftInSeconds = (int)(timeLimit - elapsedTimeSinceLevelStarted);
+
 		// Start the timer
 		if (startTime)
 		{
-
 			// Increment the time and check if it is equal to the time limit
 			elapsedTimeSinceLevelStarted += Time.deltaTime;
 			timeLeftInSeconds = (int)(timeLimit - elapsedTimeSinceLevelStarted);
@@ -135,14 +148,18 @@ public class GameManager : MonoBehaviour
 			}
 
 			// Update the time limit text to display the right time
-			timeLeftInSeconds = (int)(timeLimit - elapsedTimeSinceLevelStarted);
 			timeLimitText.text = timeLeftInSeconds + "";
 		}
 
 		// If the player has vrossed the finishline then they have won
 		if (finishLine.PlayerCrossed)
 		{
-			playerWon = true;
+			if (!playVictorySound)
+			{
+				playerWon = true;
+				playVictorySound = true;
+				am.PlaySound("VictorySound");
+			}
 		}
 
 		// If the player has won then show the end of level UI and let them goto the next level
@@ -180,13 +197,18 @@ public class GameManager : MonoBehaviour
 			RestartLevel();
 		}
 
-		Debug.Log("Final Countdown:" + finalCountdownEnabled);
-
 		// If the countdown has reached start playing the clock sound
-		if (!finalCountdownEnabled && timeLeftInSeconds <= 10)
+		if (!finalCountdownEnabled && timeLeftInSeconds <= 10 && elapsedTimeSinceLevelStarted <= timeLimit)
 		{
-			Debug.Log("Works");
 			finalCountdownEnabled = true;
+			timeLimitText.color = Color.red;
+		}
+
+		// Activate the countdown
+		counterForASecond += Time.deltaTime;
+		if (counterForASecond >= 1 && finalCountdownEnabled)
+		{
+			counterForASecond = 0;
 			am.PlaySound("ClockTick");
 		}
 	}
@@ -214,13 +236,18 @@ public class GameManager : MonoBehaviour
 		finishLine.PlayerCrossed = false;
 		playerWon = false;
 		finalCountdownEnabled = false;
+		playVictorySound = false;
 
 		// Reset UI
 		levelCompleteUI.SetActive(false);
 		gameOverUI.SetActive(false);
+		timeLimitText.color = Color.white;
 
 		// Reset elapsedTime
 		elapsedTimeSinceLevelStarted = 0.0f;
+
+		// Setup the amount of time left
+		timeLeftInSeconds = (int)timeLimit;
 
 		// Start the timer
 		if (!startTime)
@@ -235,6 +262,9 @@ public class GameManager : MonoBehaviour
 
 	public void startGame()
 	{
+		// Play the start noise
+		am.PlaySound("StartNoise");
+
 		gameStarted = true;
 		finalCountdownEnabled = false;
 
