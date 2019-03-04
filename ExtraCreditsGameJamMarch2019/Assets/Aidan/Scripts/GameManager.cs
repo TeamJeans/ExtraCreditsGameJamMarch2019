@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		// Check if the player has pressed the restart button
-		if (Input.GetButtonDown("J1Y") || Input.GetButtonDown("J2Y"))
+		if ((Input.GetButtonDown("J1Y") || Input.GetButtonDown("J2Y")) && gameStarted)
 		{
 			// Restart level
 			RestartLevel();

@@ -498,7 +498,7 @@ Prefab:
         type: 2}
       propertyPath: playerObject
       value: 
-      objectReference: {fileID: 1891558241}
+      objectReference: {fileID: 514642391}
     - target: {fileID: 114726270336295120, guid: 129e2ad2c004a894e9db9fb63bfa6e92,
         type: 2}
       propertyPath: playerSpawnPoint
@@ -6274,6 +6274,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &514642391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1153969489804354, guid: 90a9496b2e092a846b46186d361391b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 514642390}
 --- !u!1 &522575527
 GameObject:
   m_ObjectHideFlags: 0

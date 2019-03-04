@@ -253,42 +253,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4057026506855660, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4990617440856134, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 4934090704860640, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 4990617440856134, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4990617440856134, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 4934090704860640, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4934090704860640, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1153969489804354, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549246117999794, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
   m_IsPrefabAsset: 0
@@ -392,6 +356,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1260503795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1153969489804354, guid: 90a9496b2e092a846b46186d361391b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 514642390}
 --- !u!4 &1272204127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4225223901144106, guid: cc578aaf798dd5247a57656fe9ea5fc2,
@@ -686,7 +655,7 @@ MonoBehaviour:
   level2Name: Bumpy Trail
   level3Name: Busy Roads
   levelNumberTextFadeAnim: {fileID: 1536096907}
-  playerObject: {fileID: 1891558241}
+  playerObject: {fileID: 1260503795}
   playerSpawnPoint: {fileID: 1975107088}
 --- !u!4 &1368067039
 Transform:

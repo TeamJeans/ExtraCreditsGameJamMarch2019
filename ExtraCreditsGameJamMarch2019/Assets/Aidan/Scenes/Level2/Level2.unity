@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.10375286, g: 0.6605592, b: 0.9130977, a: 1}
+  m_IndirectSpecularColor: {r: 0.1037525, g: 0.66055965, b: 0.9130988, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -492,6 +492,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90a9496b2e092a846b46186d361391b1, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &514642391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1153969489804354, guid: 90a9496b2e092a846b46186d361391b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 514642390}
 --- !u!1001 &584064774
 Prefab:
   m_ObjectHideFlags: 0
@@ -1345,7 +1350,7 @@ MonoBehaviour:
   level2Name: Bumpy Trail
   level3Name: Busy Roads
   levelNumberTextFadeAnim: {fileID: 1536096907}
-  playerObject: {fileID: 1891558241}
+  playerObject: {fileID: 514642391}
   playerSpawnPoint: {fileID: 1975107088}
 --- !u!4 &1368067039
 Transform:
