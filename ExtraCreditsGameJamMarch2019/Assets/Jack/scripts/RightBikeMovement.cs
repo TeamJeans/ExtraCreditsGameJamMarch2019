@@ -121,5 +121,6 @@ public class RightBikeMovement : MonoBehaviour {
             GetComponent<Rigidbody>().AddRelativeForce(-GetComponent<Rigidbody>().velocity);
         }
         pedalSpeed -= Time.deltaTime;
+        BpedalSpeed += Time.deltaTime;
     }
 }
