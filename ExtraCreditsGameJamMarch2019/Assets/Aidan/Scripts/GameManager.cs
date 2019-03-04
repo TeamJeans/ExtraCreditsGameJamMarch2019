@@ -51,10 +51,16 @@ public class GameManager : MonoBehaviour
 	bool playerWon = false;
 
 	bool gameStarted = false;
+	public bool GameStarted { get { return gameStarted; } set { gameStarted = value; } }
+
 	bool finalCountdownEnabled = false;
 	bool playVictorySound = false;
 	int timeLeftInSeconds;
 	float counterForASecond = 0;
+	float startTimer = 5.0f;
+	float elapsedTimeForStartTimer = 0;
+	bool startTheStartTimer = false;
+	bool playStartNoise = false;
 
 	void Awake()
 	{
@@ -78,8 +84,11 @@ public class GameManager : MonoBehaviour
 		else
 		{
 			// Start the next level without needing input to skip the game title
-			gameStarted = true;
-			startGame();
+			startTheStartTimer = true;
+			playStartNoise = true;
+
+			// Disable the mainmenu ui
+			mainMenuUI.SetActive(false);
 		}
 
 		// Initialise the timer text
@@ -116,10 +125,32 @@ public class GameManager : MonoBehaviour
 		//Debug.Log("Space");
 
 		//Check if the player has pressed A and start the game if so
-		if (!gameStarted)
+		if (!startTheStartTimer)
 		{
-			if (Input.GetKeyDown("a"))
+			if (Input.GetButtonDown("J1A") || Input.GetButtonDown("J2A"))
 			{
+				startTheStartTimer = true;
+				playStartNoise = true;
+
+				// Disable the mainmenu ui
+				mainMenuUI.SetActive(false);
+			}
+		}
+
+		if (startTheStartTimer)
+		{
+			if (playStartNoise)
+			{
+				am.PlaySound("StartNoise");
+				playStartNoise = false;
+				// Show the level number
+				levelNumberTextFadeAnim.SetBool("PlayFadeAnim", true);
+			}
+
+			elapsedTimeForStartTimer += Time.deltaTime;
+			if (elapsedTimeForStartTimer >= startTimer)
+			{
+				startTheStartTimer = false;
 				startGame();
 			}
 		}
@@ -191,7 +222,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		// Check if the player has pressed the restart button
-		if (Input.GetKeyDown("r"))
+		if (Input.GetButtonDown("J1Y") || Input.GetButtonDown("J2Y"))
 		{
 			// Restart level
 			RestartLevel();
@@ -237,6 +268,7 @@ public class GameManager : MonoBehaviour
 		playerWon = false;
 		finalCountdownEnabled = false;
 		playVictorySound = false;
+		playStartNoise = false;
 
 		// Reset UI
 		levelCompleteUI.SetActive(false);
@@ -255,6 +287,7 @@ public class GameManager : MonoBehaviour
 			startTime = true;
 			elapsedTimeSinceLevelStarted = 0.0f;
 		}
+		startTheStartTimer = false;
 
 		// RepositionPlayer
 		playerObject.transform.position = new Vector3(playerSpawnPoint.position.x, playerSpawnPoint.position.y, playerSpawnPoint.position.z);
@@ -262,14 +295,8 @@ public class GameManager : MonoBehaviour
 
 	public void startGame()
 	{
-		// Play the start noise
-		am.PlaySound("StartNoise");
-
 		gameStarted = true;
 		finalCountdownEnabled = false;
-
-		// Disable the mainmenu ui
-		mainMenuUI.SetActive(false);
 
 		// Start the timer
 		if (!startTime)
@@ -277,9 +304,6 @@ public class GameManager : MonoBehaviour
 			startTime = true;
 			elapsedTimeSinceLevelStarted = 0.0f;
 		}
-
-		// Show the level number
-		levelNumberTextFadeAnim.SetBool("PlayFadeAnim", true);
 	}
 
 	public void ChangeLevelName(string levelName)

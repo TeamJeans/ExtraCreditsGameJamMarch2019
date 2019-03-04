@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Aidan/Scenes/Level1/Level1.unity
-    guid: d2c5e0f0acfb5a748a4cb396eb44eaae
-  - enabled: 1
-    path: Assets/Aidan/Scenes/Level2/Level2.unity
-    guid: 6c2b92307a454514bac29e195ec703b1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Aidan/Scenes/Level3/Level3.unity
     guid: 869cc76bf6673ea418d804ad62936b67

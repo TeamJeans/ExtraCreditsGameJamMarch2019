@@ -6,7 +6,9 @@ public class LeftBikeMovement : MonoBehaviour {
 
     public Animator cycleAnim;
 
-    Vector3 speedReduct;
+	GameManager gm;
+
+	Vector3 speedReduct;
     int MvSpeed;
     float speed;
     float pedalSpeed;
@@ -18,8 +20,13 @@ public class LeftBikeMovement : MonoBehaviour {
     bool LPedalB;
     bool RPedalB;
 
-    // Use this for initialization
-    void Start()
+	void Awake()
+	{
+		gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+	}
+
+	// Use this for initialization
+	void Start()
     {
         speedReduct.x = 50;
         speedReduct.y = 50;
@@ -101,23 +108,25 @@ public class LeftBikeMovement : MonoBehaviour {
             BpedalSpeed = -4;
         }
 
-
-        //animation
-        if (pedalSpeed > 0)
-        {
-            cycleAnim.SetFloat("CycleSpeed", 8 * pedalSpeed);
-        }
-        else
-        {
-            cycleAnim.SetFloat("CycleSpeed", 8 * BpedalSpeed);
-        }
+		if (gm.GameStarted)
+		{
+			//animation
+			if (pedalSpeed > 0)
+			{
+				cycleAnim.SetFloat("CycleSpeed", 8 * pedalSpeed);
+			}
+			else
+			{
+				cycleAnim.SetFloat("CycleSpeed", 8 * BpedalSpeed);
+			}
         
         
 
 
-        //add force to make object move
-        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -pedalSpeed, 0, 0);
-        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -BpedalSpeed, 0, 0);
+			//add force to make object move
+			GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -pedalSpeed, 0, 0);
+			GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -BpedalSpeed, 0, 0);
+		}
 
 
         //max speed

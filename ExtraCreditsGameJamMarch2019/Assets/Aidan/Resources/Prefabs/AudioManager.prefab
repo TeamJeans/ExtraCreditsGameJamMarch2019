@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1764294244627576}
+  m_IsPrefabAsset: 1
+--- !u!1 &1764294244627576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4662439735990126}
+  - component: {fileID: 114618478257036898}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: AudioManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4662439735990126
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1764294244627576}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114618478257036898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1764294244627576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dad44a26cdc432478f380d4fcadf3db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ClockTick
+    clip: {fileID: 8300000, guid: 27b62bbee11e6cd4396ddf26d930bb9f, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: Pedalling
+    clip: {fileID: 8300000, guid: 9e58ff2ec28529341809445834e57657, type: 3}
+    volume: 0.2
+    pitch: 0
+    randomVolume: 0
+    randomPitch: 0
+    loop: 1
+  - name: ReversingBike
+    clip: {fileID: 8300000, guid: 759cbd51ec0b6214385a3e7f2b80f0aa, type: 3}
+    volume: 0.2
+    pitch: 0
+    randomVolume: 0
+    randomPitch: 0
+    loop: 1
+  - name: VictorySound
+    clip: {fileID: 8300000, guid: b6fc3443ccf31e7498dfb28e1af3d9b6, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: StartNoise
+    clip: {fileID: 8300000, guid: cf8f115166797114a894f0d13b3cca12, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: Music
+    clip: {fileID: 8300000, guid: 5ea08dc4ba07c644b8ab0e955c47422c, type: 3}
+    volume: 0.2
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0

@@ -7,6 +7,8 @@ public class RightBikeMovement : MonoBehaviour {
 
     public Animator cycleAnim;
 
+	GameManager gm;
+
 
     Vector3 speedReduct;
     int MvSpeed;
@@ -19,6 +21,11 @@ public class RightBikeMovement : MonoBehaviour {
 
     bool LPedalB;
     bool RPedalB;
+
+	void Awake()
+	{
+		gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+	}
 
     // Use this for initialization
     void Start()
@@ -100,19 +107,22 @@ public class RightBikeMovement : MonoBehaviour {
             pedalSpeed = 4;
         }
 
-        //animation
-        if (pedalSpeed > 0)
-        {
-            cycleAnim.SetFloat("CycleSpeed", 8 * pedalSpeed);
-        }
-        else
-        {
-            cycleAnim.SetFloat("CycleSpeed", 8 * BpedalSpeed);
-        }
+		if (gm.GameStarted)
+		{
+			//animation
+			if (pedalSpeed > 0)
+			{
+				cycleAnim.SetFloat("CycleSpeed", 8 * pedalSpeed);
+			}
+			else
+			{
+				cycleAnim.SetFloat("CycleSpeed", 8 * BpedalSpeed);
+			}
 
-        //add force to move
-        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -pedalSpeed, 0, 0);
-        GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -BpedalSpeed, 0, 0);
+			//add force to move
+			GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -pedalSpeed, 0, 0);
+			GetComponent<Rigidbody>().AddRelativeForce(MvSpeed * -BpedalSpeed, 0, 0);
+		}
 
 
         //max speed
