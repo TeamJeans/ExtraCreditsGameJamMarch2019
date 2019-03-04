@@ -1885,11 +1885,11 @@ MonoBehaviour:
   gameOverUI: {fileID: 1457959623}
   mainMenuUI: {fileID: 516504395}
   levelNameText: {fileID: 406574415}
-  tutorialName: 
-  level1Name: Slippy Slopes
-  level2Name: Bumpy Trail
-  level3Name: Busy Roads
-  level4Name: 
+  tutorialName: Newly Weds
+  level1Name: First Fight
+  level2Name: Slipery Slopes
+  level3Name: Mid-Life Crisis
+  level4Name: Spiralling Disaster
   levelNumberTextFadeAnim: {fileID: 13527163}
   playerObject: {fileID: 732049410}
   playerSpawnPoint: {fileID: 1975107088}

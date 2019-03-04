@@ -8668,9 +8668,11 @@ MonoBehaviour:
   gameOverUI: {fileID: 1536096910}
   mainMenuUI: {fileID: 1536096908}
   levelNameText: {fileID: 1536096906}
-  level1Name: Slippy Slopes
-  level2Name: Bumpy Trail
-  level3Name: Busy Roads
+  tutorialName: Newly Weds
+  level1Name: Fir
+  level2Name: w
+  level3Name: w
+  level4Name: w
   levelNumberTextFadeAnim: {fileID: 1536096907}
   playerObject: {fileID: 1895818038}
   playerSpawnPoint: {fileID: 1975107088}
