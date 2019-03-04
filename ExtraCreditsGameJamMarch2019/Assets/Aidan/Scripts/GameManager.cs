@@ -33,11 +33,15 @@ public class GameManager : MonoBehaviour
 
 	// Level names
 	[SerializeField]
+	string tutorialName;
+	[SerializeField]
 	string level1Name;
 	[SerializeField]
 	string level2Name;
 	[SerializeField]
 	string level3Name;
+	[SerializeField]
+	string level4Name;
 
 	// Animation
 	[SerializeField]
@@ -49,6 +53,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	Transform playerSpawnPoint;
 	bool playerWon = false;
+
+	RightBikeMovement rbM;
+	LeftBikeMovement lbM;
 
 	bool gameStarted = false;
 	public bool GameStarted { get { return gameStarted; } set { gameStarted = value; } }
@@ -65,6 +72,8 @@ public class GameManager : MonoBehaviour
 	void Awake()
 	{
 		am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+		rbM = FindObjectOfType<RightBikeMovement>();
+		lbM = FindObjectOfType<LeftBikeMovement>();
 	}
 
 	void Start()
@@ -271,6 +280,10 @@ public class GameManager : MonoBehaviour
 
 	public void RestartLevel()
 	{
+		// Reset velocities
+		rbM.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+		lbM.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+
 		// Reset finish Line
 		finishLine.PlayerCrossed = false;
 		playerWon = false;
