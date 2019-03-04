@@ -73,7 +73,6 @@ public class LeftBikeMovement : MonoBehaviour {
             pedalSpeed = 0;
             LPedal = false;
         }
-        Debug.Log("Controller1: " + InputManager.LeftBumper1());
         //right bumper for reversing
         if (!InputManager.RightBumper1()) RPedalB = true;
         if (InputManager.RightBumper1() && RPedalB)
@@ -82,9 +81,6 @@ public class LeftBikeMovement : MonoBehaviour {
             pedalSpeed = 0;
             RPedalB = false;
         }
-        Debug.Log("Controller1: " + InputManager.RightBumper1());
-
-
 
         //stop it going the wrong direction by itself
         if (pedalSpeed > 4)
