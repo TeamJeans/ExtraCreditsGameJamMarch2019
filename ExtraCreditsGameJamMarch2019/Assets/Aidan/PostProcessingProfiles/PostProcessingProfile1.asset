@@ -71,19 +71,19 @@ MonoBehaviour:
   depthOfField:
     m_Enabled: 1
     m_Settings:
-      focusDistance: 4.17
-      aperture: 4
-      focalLength: 69
-      useCameraFov: 0
+      focusDistance: 3.13
+      aperture: 2.8
+      focalLength: 105
+      useCameraFov: 1
       kernelSize: 1
   motionBlur:
     m_Enabled: 0
     m_Settings:
-      shutterAngle: 270
+      shutterAngle: 78
       sampleCount: 10
       frameBlending: 0
   eyeAdaptation:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       lowPercent: 45
       highPercent: 95
@@ -100,10 +100,10 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.52
-        threshold: 1.12
-        softKnee: 0.614
-        radius: 2.17
+        intensity: 0.19
+        threshold: 1.1
+        softKnee: 0.5
+        radius: 1.91
         antiFlicker: 1
       lensDirt:
         texture: {fileID: 0}
@@ -112,7 +112,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       tonemapping:
-        tonemapper: 2
+        tonemapper: 1
         neutralBlackIn: 0.02
         neutralWhiteIn: 10
         neutralBlackOut: 0
@@ -120,12 +120,12 @@ MonoBehaviour:
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: 0.32
-        temperature: 12
+        postExposure: 0.76
+        temperature: 0
         tint: 0
         hueShift: 0
-        saturation: 1.15
-        contrast: 1.16
+        saturation: 1
+        contrast: 1
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
@@ -134,9 +134,9 @@ MonoBehaviour:
       colorWheels:
         mode: 1
         log:
-          slope: {r: 1, g: 0.9876259, b: 0.8743683, a: 0}
-          power: {r: 1, g: 0.96330947, b: 0.63476145, a: 0}
-          offset: {r: 1, g: 0.9511451, b: 0.7077541, a: 0}
+          slope: {r: 0.98133254, g: 1, b: 0.98163235, a: 0}
+          power: {r: 0.9864175, g: 0.9898131, b: 1, a: 0}
+          offset: {r: 0.98987603, g: 1, b: 0.99688905, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
           gamma: {r: 0, g: 0, b: 0, a: 0}
@@ -322,8 +322,8 @@ MonoBehaviour:
       mode: 0
       color: {r: 0, g: 0, b: 0, a: 1}
       center: {x: 0.5, y: 0.5}
-      intensity: 0.306
-      smoothness: 0.642
+      intensity: 0.185
+      smoothness: 0.551
       roundness: 1
       mask: {fileID: 0}
       opacity: 1
