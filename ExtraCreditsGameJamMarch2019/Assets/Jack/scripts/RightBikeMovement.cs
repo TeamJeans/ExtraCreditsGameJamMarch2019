@@ -53,36 +53,21 @@ public class RightBikeMovement : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
 
         
-        //left trigger
-        if (InputManager.LeftTrigger2() > 0) LPedal = true;
-        if (InputManager.LeftTrigger2() == 0 && LPedal)
-        {
-            pedalSpeed += 0.3f;
-            BpedalSpeed = 0;
-            LPedal = false;
-        }
+
         //right trigger
-        if (InputManager.RightTrigger2() > 0) RPedal = true;
-        if (InputManager.RightTrigger2() == 0 && RPedal)
+        if (InputManager.RightTrigger1() > 0) RPedal = true;
+        if (InputManager.RightTrigger1() == 0 && RPedal)
         {
-            pedalSpeed += 0.3f;
+            pedalSpeed += 0.5f;
             BpedalSpeed = 0;
             RPedal = false;
         }
 
-        //left bumper for reversing
-        if (!InputManager.LeftBumper2()) LPedalB = true;
-        if (InputManager.LeftBumper2() && LPedalB)
-        {
-            BpedalSpeed -= 0.3f;
-            pedalSpeed = 0;
-            LPedalB = false;
-        }
         //right bumper for reversing
-        if (!InputManager.RightBumper2()) RPedalB = true;
-        if (InputManager.RightBumper2() && LPedalB)
+        if (!InputManager.RightBumper1()) RPedalB = true;
+        if (InputManager.RightBumper1() && RPedalB)
         {
-            BpedalSpeed -= 0.3f;
+            BpedalSpeed -= 0.5f;
             pedalSpeed = 0;
             RPedalB = false;
         }
