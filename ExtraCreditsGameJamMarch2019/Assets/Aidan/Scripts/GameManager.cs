@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
 	// Time limit variables
 	[SerializeField]
-	float timeLimit = 100.0f;
+	float timeLimit = 999.0f;
 	float elapsedTimeSinceLevelStarted;
 	bool startTime = false;
 	[SerializeField]
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
 		{
 			if (playStartNoise)
 			{
-				am.PlaySound("StartNoise");
+			    am.PlaySound("StartNoise");
 				playStartNoise = false;
 				// Show the level number
 				levelNumberTextFadeAnim.SetBool("PlayFadeAnim", true);
@@ -280,39 +280,42 @@ public class GameManager : MonoBehaviour
 
 	public void RestartLevel()
 	{
-		// Reset velocities
-		rbM.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
-		lbM.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        //// Reset velocities
+        //rbM.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+        //lbM.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 
-		// Reset finish Line
-		finishLine.PlayerCrossed = false;
-		playerWon = false;
-		finalCountdownEnabled = false;
-		playVictorySound = false;
-		playStartNoise = false;
+        //// Reset finish Line
+        //finishLine.PlayerCrossed = false;
+        //playerWon = false;
+        //finalCountdownEnabled = false;
+        //playVictorySound = false;
+        //playStartNoise = false;
 
-		// Reset UI
-		levelCompleteUI.SetActive(false);
-		gameOverUI.SetActive(false);
-		timeLimitText.color = Color.white;
+        //// Reset UI
+        //levelCompleteUI.SetActive(false);
+        //gameOverUI.SetActive(false);
+        //timeLimitText.color = Color.white;
 
-		// Reset elapsedTime
-		elapsedTimeSinceLevelStarted = 0.0f;
+        //// Reset elapsedTime
+        //elapsedTimeSinceLevelStarted = 0.0f;
 
-		// Setup the amount of time left
-		timeLeftInSeconds = (int)timeLimit;
+        //// Setup the amount of time left
+        //timeLeftInSeconds = (int)timeLimit;
 
-		// Start the timer
-		if (!startTime)
-		{
-			startTime = true;
-			elapsedTimeSinceLevelStarted = 0.0f;
-		}
-		startTheStartTimer = false;
+        //// Start the timer
+        //if (!startTime)
+        //{
+        //	startTime = true;
+        //	elapsedTimeSinceLevelStarted = 0.0f;
+        //}
+        //startTheStartTimer = false;
 
-		// RepositionPlayer
-		playerObject.transform.position = new Vector3(playerSpawnPoint.position.x, playerSpawnPoint.position.y, playerSpawnPoint.position.z);
-	}
+        //// RepositionPlayer
+        //playerObject.transform.position = new Vector3(playerSpawnPoint.position.x, playerSpawnPoint.position.y, playerSpawnPoint.position.z);
+
+        Scene scene = SceneManager.GetActiveScene(); 
+        SceneManager.LoadScene(scene.name);
+    }
 
 	public void startGame()
 	{
